@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'mystery_mobile_rotalicitalic';
-    src: url(/Users/timminker/dev/projects/capstone_project/capstone_frontend/forneverhome-auth/public/mysterymobilerotalic-earaz-webfont.woff2) format('woff2'),
-         url(/Users/timminker/dev/projects/capstone_project/capstone_frontend/forneverhome-auth/public/mysterymobilerotalic-earaz-webfont.woff) format('woff');
+    src: url(/public/mysterymobilerotalic-earaz-webfont.woff2) format('woff2'),
+         url(/public/mysterymobilerotalic-earaz-webfont.woff) format('woff');
     font-weight: normal;
     font-style: normal;
 
