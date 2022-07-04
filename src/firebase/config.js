@@ -1,10 +1,7 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
-import firebase from 'firebase/compat/app'
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
+import { initializeApp } from 'firebase/app'
+import { getAuth } from 'firebase/auth'
 
+//The config we copied from firebase(Replace with your config)
 const firebaseConfig = {
   apiKey: "AIzaSyCZzlFmYZKjmTfbuhzNhbu7-GTdGb76QOE",
   authDomain: "fornever-home.firebaseapp.com",
@@ -15,6 +12,11 @@ const firebaseConfig = {
   appId: "1:921152193556:web:5bfad8c5c23151729dd301"
 };
 
-firebase.initializeApp(firebaseConfig)
+//initialize the firebase app
+initializeApp(firebaseConfig)
 
-createApp(App).use(router).mount('#app')
+//initialize firebase auth
+const auth = getAuth()
+
+//export the auth object
+export { auth }

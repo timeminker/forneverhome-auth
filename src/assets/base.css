@@ -1,0 +1,123 @@
+@font-face {
+    font-family: 'mystery_mobile_rotalicitalic';
+    src: url(/Users/timminker/dev/projects/capstone_project/capstone_frontend/forneverhome-auth/public/mysterymobilerotalic-earaz-webfont.woff2) format('woff2'),
+         url(/Users/timminker/dev/projects/capstone_project/capstone_frontend/forneverhome-auth/public/mysterymobilerotalic-earaz-webfont.woff) format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+body {
+  min-height: 100vh;
+  color: white;
+  background: url('https://i.ibb.co/FzGp7V3/whitby-abbey-3790661-1280-1.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  transition: color 0.5s, background-color 0.5s;
+  line-height: 1.6;
+  font-family: 'mystery_mobile_rotalicitalic';
+  font-size: 50px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+  font-size: 200px;
+  margin: 0px;
+}
+
+header {
+  color: white;
+  font-size: 50px;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.login {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 50px;
+}
+
+.card {
+  background: rgb(10, 10, 10, .50);
+  border-radius: 0px 15px 0px 15px;
+  text-align: center;
+  padding: 10px;
+  position: relative;
+  font-size: 35px;
+}
+
+.add-form, .login-form, .register-form {
+  background: rgb(10, 10, 10, .50);
+  border-radius: 0px 15px 0px 15px;
+  width: 50%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  font-size: 25px;
+  padding: 20px;
+}
+
+input[type=text], input[type=password], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  box-sizing: border-box;
+  background: ghostwhite;
+}
+
+button, input[type=submit] {
+  border-radius: 20px;
+  padding: 7px 20px;
+  border-style: none;
+  font-size: 30px;
+  font-family: 'mystery_mobile_rotalicitalic';
+  cursor: pointer;
+
+}
+
+.pet-image {
+  float: left;
+  width:  300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 0px 15px 15px 15px;
+  padding-bottom: 40px;
+  z-index: 1;
+}
+
+.flowers {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -90%);
+  width: 300px;
+  z-index: 3;
+  position: absolute;
+}
+
+.edit-form {
+  width: 300px;
+}
+
+.notes {
+  font-size: 25px;
+  width: 270px;
+  margin-left: auto;
+  margin-right: auto;
+}
