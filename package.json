@@ -6,7 +6,7 @@
   },
   "private": true,
   "scripts": {
-    "start": "node src/app.vue",
+    "start": "node main.js",
     "dev": "vite",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
