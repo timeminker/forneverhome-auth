@@ -6,8 +6,6 @@
   },
   "private": true,
   "scripts": {
-    "start": "node app",
-    "dev": "vite",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
