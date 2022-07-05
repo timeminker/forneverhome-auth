@@ -19,13 +19,12 @@ export default {
     <div class="edit-form">
       <button v-if="pet.id != edit" @click="setID(pet.id)">Edit</button>
       <button v-if="pet.id == edit" @click="setID(pet.id)">Go back</button>
-      <form v-if="pet.id == edit" @submit.prevent="handleUpdate(pet.id)">
-        <input v-model="newEditedPet.name" type="text">
-        <input v-model="newEditedPet.species" type="text">
-        <input v-model="newEditedPet.image" type="text">
-        <input v-model="newEditedPet.owner" type="text">
-        <input v-model="newEditedPet.notes" type="text">
-        <input v-model="newEditedPet.thoughts" type="text">
+      <form v-if="pet.id == edit" @submit.prevent="handleUpdate(pet)">
+        <input v-model="newEditedPet.name" type="text" :placeholder=[[pet.name]]>
+        <input v-model="newEditedPet.species" type="text" :placeholder=[[pet.species]]>
+        <input v-model="newEditedPet.image" type="text" :placeholder=[[pet.image]]>
+        <input v-model="newEditedPet.owner" type="text" :placeholder=[[pet.owner]]>
+        <input v-model="newEditedPet.notes" type="text" :placeholder=[[pet.notes]]>
         <button type="submit">Submit</button>
       </form>
     </div>

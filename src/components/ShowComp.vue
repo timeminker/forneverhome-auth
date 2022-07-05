@@ -11,7 +11,7 @@ export default {
 
 <template>
   <div>
-    <div class="pet=card-pictures">
+    <div class="pet-card-pictures">
       <img v-bind:src="pet.image" class="pet-image">
       <img src="https://i.ibb.co/FwTwvV7/favpng-flower-delivery-puja-petal-marigold.png" class="flowers">
     </div>

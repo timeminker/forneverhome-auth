@@ -100,12 +100,13 @@ button, input[type=submit] {
   border-radius: 0px 15px 15px 15px;
   padding-bottom: 40px;
   z-index: 1;
+  position: sticky;
 }
 
 .flowers {
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -90%);
+  transform: translate(-50%, -120%);
   width: 300px;
   z-index: 3;
   position: absolute;
@@ -120,4 +121,8 @@ button, input[type=submit] {
   width: 270px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.pet-card-pictures {
+
 }

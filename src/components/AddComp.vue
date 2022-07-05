@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="handleCreate">
+  <form @submit.prevent="handleCreate(name)">
     <label htmlFor="name">Name</label>
     <input v-model="myNewPet.name" type="text"><br/>
     <label htmlFor="species">Species</label>
@@ -10,15 +10,13 @@
     <input v-model="myNewPet.owner" type="text"><br/>
     <label htmlFor="notes">Description</label>
     <input v-model="myNewPet.notes" type="text"><br/>
-    <label htmlFor="thoughts">Thoughts and Prayers</label>
-    <input v-model="myNewPet.thoughts" type="text"><br/>
     <button type="submit">Submit</button>
   </form>
 </template>
 
 <script>
 export default {
-  props: ['handleCreate', 'newPet'],
+  props: ['handleCreate', 'newPet', 'name'],
   methods: {
     createdPet() {
       let myNewPet = this.newPet;
@@ -27,7 +25,7 @@ export default {
   },
   data() {
     return {
-      myNewPet: this.newPet
+      myNewPet: this.newPet,
     }
   }
 }

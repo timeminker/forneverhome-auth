@@ -9,6 +9,7 @@
       <h1>For-Never Home</h1>
       <h3>Welcome, {{name}}</h3>
     </section>
+    <button @click="userFilter(name)">See Your Pets</button>
     <button @click="filter('Dog')">Show Dogs</button>
     <button @click="filter('Cat')">Show Cats</button>
     <button @click="filter('Reptile')">Show Reptiles</button>
@@ -19,20 +20,27 @@
     <div class="container">
       <div v-for="pet in pets" :key="pet.id" class="card">
         <ShowComp :pet="pet"/>
-        <EditComp :pet="pet" :editPet="editPet" :handleUpdate="handleUpdate" @update-editPet="update" :edit="edit" :setID="setID"/>
-        <button @click="handleDelete(pet.id)">Delete</button>
+        <div v-if="name === pet.createdBy" class="user-functions">
+          <EditComp :pet="pet" :editPet="editPet" :handleUpdate="handleUpdate" @update-editPet="update" :edit="edit" :setID="setID"/>
+          <button @click="handleDelete(pet.id)">Delete</button>
+        </div>
       </div>
     </div>
 
   </main>
   <div class="add-form" v-if="view == 'add'">
     <button @click="mainView">Return to Hall Of Rememeberance</button>
-    <AddComp :newPet="newPet" :handleCreate="handleCreate" @update-newPet="update"/>
+    <AddComp :newPet="newPet" :handleCreate="handleCreate" @update-newPet="update" :name="name"/>
   </div>
   <section v-if="view == 'filter'">
     <div v-for="animal in filterResults" :key="animal.id">
-      <p>{{animal.name}}, a go od {{animal.species}}</p>
+      <img v-bind:src="animal.image" class="filter-image">
+      <p>{{animal.name}}, a good {{animal.species}}</p>
       <p>owned by {{animal.owner}}</p>
+      <div v-if="name === animal.createdBy" class="user-functions">
+        <EditComp :pet="pet" :editPet="editPet" :handleUpdate="handleUpdate" @update-editPet="update" :edit="edit" :setID="setID"/>
+        <button @click="handleDelete(animal.id)">Delete</button>
+      </div>
     </div>
     <button @click="mainView">Return to Hall Of Rememeberance</button>
   </section>
@@ -57,8 +65,8 @@ export default {
     const name = ref('');
 
     let pets = ref([])
-    let newPet = ref({name: '', species: '', image: '', owner: '', notes: '', thoughts: ''})
-    let editPet = ref({name: '', species: '', image: '', owner: '', notes: '', thoughts: ''})
+    let newPet = ref({name: '', species: '', image: '', owner: '', notes: '', createdBy: ''})
+    let editPet = ref({name: '', species: '', image: '', owner: '', notes: '', createdBy: ''})
     let view = ref('main')
     let filterResults = ref([])
     let edit = ref('')
@@ -100,6 +108,13 @@ export default {
       view.value = 'filter'
     }
 
+    // filtering by user
+    const userFilter = (name) => {
+      console.log(name);
+      filterResults.value = pets.value.filter(pet => pet.createdBy === name)
+      view.value = 'filter'
+    }
+
     // CRUD API functions
     onMounted(() => {
       axios.get('https://forneverhome-backend.herokuapp.com/api/pets')
@@ -108,19 +123,47 @@ export default {
       })
     })
 
-    const handleCreate = () => {
-      axios.post('https://forneverhome-backend.herokuapp.com/api/pets', newPet.value)
+    const handleCreate = (name) => {
+      axios.post('https://forneverhome-backend.herokuapp.com/api/pets',
+      {
+        name: newPet.value.name,
+        species: newPet.value.species,
+        image: newPet.value.image,
+        owner: newPet.value.owner,
+        notes: newPet.value.notes,
+        createdBy: name
+      })
       .then((response) =>{ pets.value = [...pets.value, response.data]
-      newPet.value = ref({name: '', species: '', image: '', owner: '', notes: '', thoughts: ''})
-      console.log(newPet.value);
+      newPet.value = ref({name: '', species: '', image: '', owner: '', notes: '', createdBy: ''})
+
       })
     }
 
-    const handleUpdate = (petID) => {
-      axios.put('https://forneverhome-backend.herokuapp.com/api/pets/' + petID, editPet.value)
+    const handleUpdate = (pet) => {
+      console.log(pet);
+      console.log(editPet.value);
+      if (editPet.value.name === undefined || editPet.value.name === '') {
+        editPet.value.name = pet.name
+      }
+      if (editPet.value.species === undefined || editPet.value.species === '') {
+        editPet.value.species = pet.species
+      }
+      if (editPet.value.image === undefined || editPet.value.image === '') {
+        editPet.value.image = pet.image
+      }
+      if (editPet.value.owner === undefined || editPet.value.owner === '') {
+        editPet.value.owner = pet.owner
+      }
+      if (editPet.value.notes === undefined || editPet.value.notes === '') {
+        editPet.value.notes = pet.notes
+      }
+      if (editPet.value.createdBy === undefined || editPet.value.createdBy === '') {
+        editPet.value.createdBy = pet.createdBy
+      }
+      axios.put('https://forneverhome-backend.herokuapp.com/api/pets/' + pet.id, editPet.value)
       .then((response)=> {
         edit.value = ''
-        editPet.value = ref({name: '', species: '', image: '', owner: '', notes: '', thoughts: ''})
+        editPet.value = ref({name: '', species: '', image: '', owner: '', notes: '', createdBy: ''})
         pets.value = pets.value.map((pet) => {
           return pet.id !== response.data.id ? pet : response.data
         })
@@ -149,7 +192,8 @@ export default {
       handleUpdate,
       handleDelete,
       edit,
-      setID
+      setID,
+      userFilter
     }
   },
   methods: {
