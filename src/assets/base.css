@@ -39,6 +39,27 @@ header {
   text-align: center;
 }
 
+nav {
+  background: rgb(10, 10, 10, .50);
+  position: sticky;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+nav button {
+  margin: 0 20px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 60px;
+}
+
 .container {
   display: flex;
   justify-content: space-evenly;
@@ -98,18 +119,20 @@ button, input[type=submit] {
   height: 300px;
   object-fit: cover;
   border-radius: 0px 15px 15px 15px;
-  padding-bottom: 40px;
+  /* padding-bottom: 40px; */
   z-index: 1;
-  position: sticky;
 }
 
 .flowers {
-  top: 50%;
+  width: 300px;
+  margin-top: -50px;
+  z-index: 100;
+  /* top: 50%;
   left: 50%;
-  transform: translate(-50%, -120%);
+  transform: translate(-148px, -40px);
   width: 300px;
   z-index: 3;
-  position: absolute;
+  position: absolute; */
 }
 
 .edit-form {
@@ -123,6 +146,11 @@ button, input[type=submit] {
   margin-right: auto;
 }
 
-.pet-card-pictures {
+.pet-description {
+  margin-top: -80px;
+}
 
+.memorialize {
+  font-size: 60px;
+  border-radius: 30px;
 }

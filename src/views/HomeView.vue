@@ -1,20 +1,18 @@
 <template>
-  <div>
-    <router-link to="/about">About</router-link>
-    <br>
+  <nav>
+    <button @click="$router.push('/about')">About</button>
     <button class="logout" @click="Logout">Logout</button>
-  </div>
-  <header>
-    <section class="main-title">
-      <h1>For-Never Home</h1>
-      <h3>Welcome, {{name}}</h3>
-    </section>
     <button @click="userFilter(name)">See Your Pets</button>
     <button @click="filter('Dog')">Show Dogs</button>
     <button @click="filter('Cat')">Show Cats</button>
     <button @click="filter('Reptile')">Show Reptiles</button>
-    <br>
-    <button @click="addView">Memorialize Your Pet</button>
+  </nav>
+  <header>
+    <section class="main-title">
+      <h1>For-Never Home</h1>
+      <h3 style="margin-top: 0;">Welcome, {{name}}</h3>
+    </section>
+    <button @click="addView" class="memorialize">Memorialize Your Pet</button>
   </header>
   <main v-if="view == 'main'">
     <div class="container">
@@ -33,15 +31,20 @@
     <AddComp :newPet="newPet" :handleCreate="handleCreate" @update-newPet="update" :name="name"/>
   </div>
   <section v-if="view == 'filter'">
-    <div v-for="animal in filterResults" :key="animal.id">
-      <img v-bind:src="animal.image" class="filter-image">
-      <p>{{animal.name}}, a good {{animal.species}}</p>
-      <p>owned by {{animal.owner}}</p>
-      <div v-if="name.toLowerCase() === animal.createdBy.toLowerCase()" class="user-functions">
-        <EditFilterComp :animal="animal" :editPet="editPet" :handleUpdate="handleUpdate" @update-editPet="update" :edit="edit" :setID="setID"/>
-        <button @click="handleDelete(animal.id)">Delete</button>
+    <div class="container">
+      <div v-for="animal in filterResults" :key="animal.id" class="card">
+        <div class="pet-card-pictures">
+          <img v-bind:src="animal.image" class="pet-image">
+        </div>
+        <p>{{animal.name}}, a good {{animal.species}}</p>
+        <p>owned by {{animal.owner}}</p>
+        <div v-if="name.toLowerCase() === animal.createdBy.toLowerCase()" class="user-functions">
+          <EditComp :pet="animal" :editPet="editPet" :handleUpdate="handleUpdate" @update-editPet="update" :edit="edit" :setID="setID"/>
+          <button @click="handleDelete(animal.id)">Delete</button>
+        </div>
       </div>
     </div>
+
     <button @click="mainView">Return to Hall Of Rememeberance</button>
   </section>
 </template>
