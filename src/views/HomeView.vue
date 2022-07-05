@@ -37,8 +37,8 @@
       <img v-bind:src="animal.image" class="filter-image">
       <p>{{animal.name}}, a good {{animal.species}}</p>
       <p>owned by {{animal.owner}}</p>
-      <div v-if="name === animal.createdBy" class="user-functions">
-        <EditComp :pet="pet" :editPet="editPet" :handleUpdate="handleUpdate" @update-editPet="update" :edit="edit" :setID="setID"/>
+      <div v-if="name.toLowerCase() === animal.createdBy.toLowerCase()" class="user-functions">
+        <EditFilterComp :animal="animal" :editPet="editPet" :handleUpdate="handleUpdate" @update-editPet="update" :edit="edit" :setID="setID"/>
         <button @click="handleDelete(animal.id)">Delete</button>
       </div>
     </div>
@@ -51,6 +51,7 @@ import {ref, onBeforeMount, onMounted} from 'vue';
 import AddComp from '../components/AddComp.vue'
 import ShowComp from '../components/ShowComp.vue'
 import EditComp from '../components/EditComp.vue'
+import EditFilterComp from '../components/EditFilterComp.vue'
 import axios from 'axios'
 import firebase from 'firebase/compat/app';
 import "firebase/compat/auth";
@@ -59,7 +60,8 @@ export default {
   components: {
     AddComp,
     EditComp,
-    ShowComp
+    ShowComp,
+    EditFilterComp
   },
   setup() {
     const name = ref('');
@@ -104,6 +106,7 @@ export default {
 
     // filtering function by animal
     const filter = (animal) => {
+      console.log(animal);
       filterResults.value = pets.value.filter(pet => pet.species.toLowerCase() === animal.toLowerCase())
       view.value = 'filter'
     }
@@ -111,7 +114,7 @@ export default {
     // filtering by user
     const userFilter = (name) => {
       console.log(name);
-      filterResults.value = pets.value.filter(pet => pet.createdBy === name)
+      filterResults.value = pets.value.filter(pet => pet.createdBy.toLowerCase() === name.toLowerCase())
       view.value = 'filter'
     }
 
@@ -134,8 +137,9 @@ export default {
         createdBy: name
       })
       .then((response) =>{ pets.value = [...pets.value, response.data]
+      alert(newPet.value.name + 'has been added. RIP')
       newPet.value = ref({name: '', species: '', image: '', owner: '', notes: '', createdBy: ''})
-
+      view.value = 'main'
       })
     }
 
