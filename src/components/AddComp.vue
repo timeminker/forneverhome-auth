@@ -3,7 +3,18 @@
     <label htmlFor="name">Name</label>
     <input v-model="myNewPet.name" type="text"><br/>
     <label htmlFor="species">Species</label>
-    <input v-model="myNewPet.species" type="text"><br/>
+    <select v-model="myNewPet.species">
+      <option disabled value="">Please Select</option>
+      <option>Dog</option>
+      <option>Cat</option>
+      <option>Bird</option>
+      <option>Reptile</option>
+      <option>Horse</option>
+      <option>Rodent</option>
+      <option>Bug</option>
+      <option>Rock</option>
+      <option>Farm Animal</option>
+    </select>
     <label htmlFor="image">Image</label>
     <input v-model="myNewPet.image" type="text"><br/>
     <label htmlFor="owner">Owner</label>

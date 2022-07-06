@@ -18,7 +18,7 @@ export default {
     <br>
     <div class="pet-description">
       <p>{{pet.name}}</p>
-      <p class="notes">"{{pet.notes}}"</p>
+      <p class="notes"><i>"{{pet.notes}}"</i></p>
       <p>owned by {{pet.owner}}</p>
     </div>
   </div>

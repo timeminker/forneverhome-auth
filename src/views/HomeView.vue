@@ -15,6 +15,7 @@
     <button @click="addView" class="memorialize">Memorialize Your Pet</button>
   </header>
   <main v-if="view == 'main'">
+    <h2 class="banner"><span>T</span><span>h</span><span>e</span> <span>H</span><span>a</span><span>l</span><span>l</span> <span>o</span><span>f</span> <span>R</span><span>e</span><span>m</span><span>e</span><span>m</span><span>b</span><span>e</span><span>r</span><span>a</span><span>n</span><span>c</span><span>e</span></h2>
     <div class="container">
       <div v-for="pet in pets" :key="pet.id" class="card">
         <ShowComp :pet="pet"/>
@@ -27,7 +28,7 @@
 
   </main>
   <div class="add-form" v-if="view == 'add'">
-    <button @click="mainView">Return to Hall Of Rememeberance</button>
+    <button @click="mainView">Return to Hall Of Rememberance</button>
     <AddComp :newPet="newPet" :handleCreate="handleCreate" @update-newPet="update" :name="name"/>
   </div>
   <section v-if="view == 'filter'">
@@ -37,6 +38,7 @@
           <img v-bind:src="animal.image" class="pet-image">
         </div>
         <p>{{animal.name}}, a good {{animal.species}}</p>
+        <p class="notes"><i>"{{animal.notes}}"</i></p>
         <p>owned by {{animal.owner}}</p>
         <div v-if="name.toLowerCase() === animal.createdBy.toLowerCase()" class="user-functions">
           <EditComp :pet="animal" :editPet="editPet" :handleUpdate="handleUpdate" @update-editPet="update" :edit="edit" :setID="setID"/>
@@ -140,7 +142,7 @@ export default {
         createdBy: name
       })
       .then((response) =>{ pets.value = [...pets.value, response.data]
-      alert(newPet.value.name + 'has been added. RIP')
+      alert(newPet.value.name + ' has been added. RIP')
       newPet.value = ref({name: '', species: '', image: '', owner: '', notes: '', createdBy: ''})
       view.value = 'main'
       })

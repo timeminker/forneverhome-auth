@@ -4,7 +4,14 @@
          url(/public/mysterymobilerotalic-earaz-webfont.woff) format('woff');
     font-weight: normal;
     font-style: normal;
+}
 
+@font-face {
+    font-family: 'times_roman_sc__osfregular';
+    src: url(/public/times_regular-webfont.woff2) format('woff2'),
+         url(/public/times_regular-webfont.woff) format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
 body {
@@ -21,6 +28,7 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-align: center;
 }
 
 h1 {
@@ -144,6 +152,7 @@ button, input[type=submit] {
   width: 270px;
   margin-left: auto;
   margin-right: auto;
+  font-family: 'times_roman_sc__osfregular';
 }
 
 .pet-description {
@@ -153,4 +162,27 @@ button, input[type=submit] {
 .memorialize {
   font-size: 60px;
   border-radius: 30px;
+}
+
+.banner {
+  background: rgb(10, 10, 10, .40);
+}
+
+/* Adapted for use from https://segmentfault.com/a/1190000041189786/en */
+span {
+  font-size: 130px;
+  text-shadow: 0 0 0 whitesmoke;
+  animation: smoky 6s infinite alternate;
+}
+
+@keyframes smoky {
+  to {
+    transform:
+      translate3d(200px, -80px, 0)
+      rotate(-40deg)
+      skewX(70deg)
+      scale(1.5);
+    text-shadow: 0 0 20px whitesmoke;
+    opacity: 0;
+  }
 }
