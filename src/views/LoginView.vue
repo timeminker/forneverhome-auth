@@ -1,7 +1,7 @@
 <template>
   <div class="login">
-    <h3>Welcome to</h3>
-    <h1>For Never Home</h1>
+    <h2>Welcome to</h2>
+    <h1>For-Never Home</h1>
     <h3><i>A Forever Home for your pet in the afterlife.</i></h3>
     <div class="login-form">
       <form @submit.prevent="Login">
