@@ -10,7 +10,7 @@
   <header>
     <section class="main-title">
       <h1>For-Never Home</h1>
-      <h3 style="margin-top: 0;">Welcome, {{name}}</h3>
+      <h3 style="margin-top: 0; width: 500px;">Welcome, {{name}}</h3>
     </section>
     <button @click="addView" class="memorialize">Memorialize Your Pet</button>
   </header>
