@@ -28,7 +28,7 @@
     margin-right: auto;
     background: rgb(10, 10, 10, .50);
     border-radius: 15px 15px 15px 15px;
-    transition: width 3s;
+    transition: width 2.5s;
     text-align: center;
   }
   .background:hover {
