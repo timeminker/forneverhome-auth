@@ -4,6 +4,9 @@
     <div class="background">
       <h3>Gone but not forgotten, For-Never Home is dedicated to the furry/scaly, big/small, wet/dry friends that we have shared our hearts and lives with. Let your pal live on into the digital age; clouds don't only exist in heaven.</h3>
     </div>
+    <div class="made-by">
+      <p>Created by Tim Minker 2022</p>
+    </div>
     <button @click="$router.push('/')">Return home</button>
   </div>
 </template>
