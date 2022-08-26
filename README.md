@@ -29,6 +29,7 @@ https://forneverhome-backend.herokuapp.com/admin
  - PostgreSQL
  - FireBase
  - TypeScript (learned)
+ - JavaScript
 
 ## Issues to Address
 
